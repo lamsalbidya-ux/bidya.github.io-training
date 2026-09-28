@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Phishing Awareness Training</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{
+  --bg:#f4f6fa;--card:#ffffff;--ink:#182233;--mut:#5c6577;--line:#e2e6ee;
+  --acc:#2f6fed;--danger:#c2352f;--danger-bg:#fbeceb;--good:#1c7a4a;--good-bg:#e9f7ef;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1420;--card:#171f30;--ink:#eef1f7;--mut:#9aa4bc;--line:#2a3450;
+  --acc:#7ea8ff;--danger:#ff8a83;--danger-bg:#3a1d1d;--good:#7fe0ac;--good-bg:#12301f;
+}}
+:root[data-theme="dark"]{
+  --bg:#0e1420;--card:#171f30;--ink:#eef1f7;--mut:#9aa4bc;--line:#2a3450;
+  --acc:#7ea8ff;--danger:#ff8a83;--danger-bg:#3a1d1d;--good:#7fe0ac;--good-bg:#12301f;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;padding:28px 16px 60px}
+.wrap{max-width:900px;margin:0 auto}
+h1{font-size:clamp(22px,4vw,30px);margin:0 0 4px}
+.sub{color:var(--mut);font-size:14px;margin-bottom:8px}
+.banner{background:var(--danger-bg);color:var(--danger);border:1px solid var(--danger);border-radius:10px;padding:10px 14px;font-size:13px;margin-bottom:26px;font-weight:600}
+h2{font-size:19px;margin:34px 0 14px}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.compare{grid-template-columns:1fr}}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.pcard .top{padding:10px 14px;font-size:12px;font-weight:700;letter-spacing:.03em}
+.top.real{background:var(--good-bg);color:var(--good)}
+.top.fake{background:var(--danger-bg);color:var(--danger)}
+.addr{font-family:Consolas,Menlo,monospace;font-size:12.5px;padding:8px 14px;border-bottom:1px solid var(--line);color:var(--mut);word-break:break-all}
+.body{padding:16px}
+.tel{width:36px;height:36px;border-radius:8px;background:#4b2e83;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;margin-bottom:10px}
+.hero{font-weight:700;font-size:15px;margin-bottom:6px}
+.desc{font-size:12.5px;color:var(--mut);margin-bottom:14px;line-height:1.5}
+.field{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:12.5px;color:var(--mut);margin-bottom:8px}
+.tellist{list-style:none;margin:12px 0 0;padding:0;font-size:12.5px}
+.tellist li{padding:5px 0 5px 20px;position:relative;color:var(--ink)}
+.tellist li::before{content:"\2715";position:absolute;left:0;color:var(--danger);font-weight:700}
+.tellist.good li::before{content:"\2713";color:var(--good)}
+.q{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+.qtitle{font-weight:700;font-size:14px;margin-bottom:4px}
+.qsub{font-family:Consolas,Menlo,monospace;font-size:12.5px;color:var(--mut);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;margin:8px 0 12px;word-break:break-all}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:10px 12px;font-size:13.5px;cursor:pointer}
+.opt:hover{border-color:var(--acc)}
+.opt.chosen-correct{background:var(--good-bg);border-color:var(--good);color:var(--good)}
+.opt.chosen-wrong{background:var(--danger-bg);border-color:var(--danger);color:var(--danger)}
+.opt[disabled]{cursor:default}
+.expl{margin-top:10px;font-size:12.5px;color:var(--mut);display:none}
+.expl.show{display:block}
+.scorebar{position:sticky;top:0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 16px;margin-bottom:20px;font-size:13px;font-weight:600;display:flex;justify-content:space-between}
+.foot{color:var(--mut);font-size:11.5px;margin-top:30px}
+</style></head>
+<body><div class="wrap">
+
+<h1>Spot the phishing attempt</h1>
+<div class="sub">Awareness training exercise &middot; identify fake domains, links and login pages</div>
+<div class="banner">TRAINING MATERIAL &mdash; all names, numbers and pages below are fictional mock-ups for teaching purposes only.</div>
+
+<h2>1. Real vs. fake &mdash; can you spot the tell?</h2>
+<div class="compare">
+  <div class="pcard">
+    <div class="top real">LEGITIMATE (example)</div>
+    <div class="addr">https://example-telecom.com/login</div>
+    <div class="body">
+      <div class="tel">ET</div>
+      <div class="hero">Example Telecom &ndash; My Account</div>
+      <div class="desc">Official login page. Valid HTTPS certificate issued to the real company. No unsolicited email led here &ndash; user typed the address directly.</div>
+      <div class="field">Mobile number</div>
+      <div class="field">Password</div>
+      <ul class="tellist good">
+        <li>Domain matches the company exactly</li>
+        <li>No urgency language</li>
+        <li>Reached by typing the address, not clicking a link</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pcard">
+    <div class="top fake">SUSPICIOUS (example)</div>
+    <div class="addr">https://exarnple-telec0m-secure.com.np/verify?uid=8f3a91&email=your.name@mail.com</div>
+    <div class="body">
+      <div class="tel" style="background:#7a2323">ET</div>
+      <div class="hero">Urgent: Verify your account now</div>
+      <div class="desc">Email claimed the account would be suspended in 24 hours unless the user clicked to verify.</div>
+      <div class="field">Full name</div>
+      <div class="field">Date of birth</div>
+      <div class="field">Password</div>
+      <ul class="tellist">
+        <li>Domain has extra letters and a wrong TLD (.com.np vs .com)</li>
+        <li>Letters swapped for lookalikes (rn instead of m, 0 instead of o)</li>
+        <li>Link contains a tracking ID and your email pre-filled</li>
+        <li>Creates urgency ("24 hours")</li>
+        <li>Asks for DOB &ndash; real login pages never need this</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h2>2. Quiz &mdash; test yourself</h2>
+<div class="scorebar"><span>Your score</span><span id="scoreOut">0 / 0</span></div>
+<div id="quiz"></div>
+
+<div class="foot">This page is a static training exercise. No data entered anywhere is collected, stored or transmitted.</div>
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    title: "You receive an SMS with this link. Is it safe to click?",
+    code: "http://nce11.com.np/bonus-data-claim",
+    options: [
+      {text:"Safe, it looks like the real telecom site", correct:false, note:"The digit \"11\" and unfamiliar domain are classic lookalike tricks \u2014 always check character-by-character."},
+      {text:"Suspicious \u2014 the domain doesn't match the real company", correct:true, note:"Correct. Compare it letter-by-letter against the company's real, known domain before trusting it."},
+      {text:"Safe, because it uses .com.np", correct:false, note:"A local top-level domain doesn't guarantee legitimacy \u2014 attackers register these too."}
+    ]
+  },
+  {
+    title: "A login page asks for your date of birth to \"verify your identity\" before you can sign in. What should you think?",
+    code: "Field: Date of Birth (required)",
+    options: [
+      {text:"Normal, lots of sites ask for this", correct:false, note:"Real login pages authenticate with password/OTP \u2014 DOB requests at login are a red flag used for identity theft or SIM-swap fraud."},
+      {text:"Suspicious \u2014 routine logins don't need your DOB", correct:true, note:"Correct. DOB + name + email is enough to attempt identity theft or a SIM swap \u2014 treat this request as a warning sign."},
+      {text:"Only unsafe if the site has no padlock icon", correct:false, note:"A padlock only confirms an encrypted connection to whatever domain you're on \u2014 fake sites can have valid certificates too."}
+    ]
+  },
+  {
+    title: "Which part of this link reveals it was sent specifically to track you?",
+    code: "https://secure-nce-portal.net/login?uid=8f3a91&email=priya@mail.com",
+    options: [
+      {text:"The word 'secure' in the domain", correct:false, note:"Attackers often add words like 'secure' or 'official' specifically to look trustworthy \u2014 it means nothing."},
+      {text:"The uid and email parameters in the URL", correct:true, note:"Correct. These identify you personally, so the attacker knows exactly who clicked \u2014 and can prefill your address to look convincing."},
+      {text:"The https:// at the start", correct:false, note:"HTTPS only means the connection is encrypted, not that the destination is trustworthy. Phishing sites use HTTPS routinely."}
+    ]
+  },
+  {
+    title: "What's the safest way to check if an urgent account email is real?",
+    code: "Subject: Your account will be suspended in 24 hours",
+    options: [
+      {text:"Click the link quickly before the deadline", correct:false, note:"Urgency is designed to make you act before you think \u2014 that's the attacker's goal."},
+      {text:"Reply to the email asking if it's genuine", correct:false, note:"Replying confirms your address is active and you engage with phishing emails \u2014 and the attacker controls the reply anyway."},
+      {text:"Go to the company's site by typing the address yourself, or call a known number", correct:true, note:"Correct. Never use contact details or links from the suspicious message itself \u2014 use ones you already know are genuine."}
+    ]
+  }
+];
+
+let score = 0, answered = 0;
+const quizEl = document.getElementById('quiz');
+const scoreOut = document.getElementById('scoreOut');
+
+QUESTIONS.forEach((q, qi) => {
+  const box = document.createElement('div');
+  box.className = 'q';
+  box.innerHTML = `<div class="qtitle">Question ${qi+1}. ${q.title}</div>
+    <div class="qsub">${q.code}</div>
+    <div class="opts"></div>
+    <div class="expl" id="expl-${qi}"></div>`;
+  const opts = box.querySelector('.opts');
+  q.options.forEach((o, oi) => {
+    const b = document.createElement('button');
+    b.className = 'opt';
+    b.textContent = o.text;
+    b.addEventListener('click', () => {
+      if (b.dataset.locked) return;
+      Array.from(opts.children).forEach(c => { c.dataset.locked = '1'; c.disabled = true; });
+      b.classList.add(o.correct ? 'chosen-correct' : 'chosen-wrong');
+      if (!o.correct) {
+        const correctBtn = Array.from(opts.children)[q.options.findIndex(x=>x.correct)];
+        correctBtn.classList.add('chosen-correct');
+      }
+      const ex = document.getElementById('expl-'+qi);
+      ex.textContent = o.note;
+      ex.classList.add('show');
+      answered++;
+      if (o.correct) score++;
+      scoreOut.textContent = score + ' / ' + answered;
+    });
+    opts.appendChild(b);
+  });
+  quizEl.appendChild(box);
+});
+</script>
+</body></html>
